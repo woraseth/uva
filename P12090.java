@@ -14,14 +14,11 @@ public class P12090 {
       }
       long sum = 0;
       for (long b = 2; b <= n / 2; b++) {
-        int z = 0;
         long m = n;
         while (m % b == 0) {
-          z++;
+          sum++;
           m /= b;
         }
-        System.out.printf("%d %d %d%n", n, b, z);
-        sum += z;
       }
       sb.append(String.format("%d %d%n", n, sum + 1));   // plus 1 because 16_10 = 10_16
     }
