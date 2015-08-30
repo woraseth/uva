@@ -1,12 +1,14 @@
-// time limit exceed
 
+// time limit exceed
+// 12090 Counting Zeroes
 import java.util.Scanner;
 
-public class P12090 {
+public class Main {
+
+  static Scanner sc = new Scanner(System.in);
 
   public static void main(String[] args) {
     StringBuilder sb = new StringBuilder();
-    Scanner sc = new Scanner(System.in);
     while (sc.hasNextLong()) {
       long n = sc.nextLong();
       if (n == 0) {
