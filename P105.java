@@ -1,14 +1,14 @@
+// 105 skyline
 
 import java.util.Scanner;
 
-// skyline
-public class P105 {
+public class Main {
 
   public static final int MAX = 10000;
+  static Scanner sc = new Scanner(System.in);
 
   public static void main(String[] args) {
     int[] a = new int[MAX];
-    Scanner sc = new Scanner(System.in);
     while (sc.hasNextInt()) {
       int start = sc.nextInt();
       int h = sc.nextInt();
