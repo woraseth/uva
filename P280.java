@@ -8,6 +8,8 @@ public class P280 {
 
   static Scanner sc;
   static LinkedList<Integer>[] g;
+  static Set<Integer> visited;
+  static Set<Integer> reach;
 
   static void createGraph() {
     while (true) {
@@ -26,15 +28,6 @@ public class P280 {
     }
   }
 
-  static Set<Integer> visited = new HashSet<>();
-  static Set<Integer> reach = new HashSet<>();
-
-  static void unreachable(int v) {
-    visited = new HashSet<>();
-    reach = new HashSet<>();
-    dfs(v);
-  }
-
   static void dfs(int v) {
     for (int i = 0; i < g[v].size(); i++) {
       int u = g[v].get(i);
@@ -47,7 +40,12 @@ public class P280 {
   }
 
   static void question() {
-    unreachable(sc.nextInt() - 1);
+    int v = sc.nextInt() - 1;
+    visited = new HashSet<>();
+    reach = new HashSet<>();
+
+    visited.add(v);
+    dfs(v);
     System.out.printf("%d ", g.length - reach.size());
     StringBuilder sb = new StringBuilder();
     for (int j = 0; j < g.length; j++) {
@@ -69,9 +67,6 @@ public class P280 {
       g[i] = new LinkedList<>();
     }
     createGraph();
-//    for (int i = 0; i < g.length; i++) {
-//      System.out.println(g[i]);
-//    }
 
     while (true) {
       int q = sc.nextInt();
