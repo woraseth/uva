@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class P280 {
 
-  static Scanner sc;
+  static Scanner sc = new Scanner(System.in);
   static LinkedList<Integer>[] g;
   static Set<Integer> visited;
   static Set<Integer> reach;
@@ -64,7 +64,6 @@ public class P280 {
   }
 
   public static void main(String[] args) {
-    sc = new Scanner(System.in);
     while (true) {
       int n = sc.nextInt();
       if (n == 0) {
