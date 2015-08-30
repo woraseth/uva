@@ -1,3 +1,4 @@
+// Pete and his TAs scrum for finding a bug
 
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -51,15 +52,14 @@ public class P280 {
 
     visited.add(v);
     dfs(v);
-    System.out.printf("%d ", g.length - reach.size());
+    System.out.printf("%d", g.length - reach.size());
     StringBuilder sb = new StringBuilder();
     for (int j = 0; j < g.length; j++) {
       if (!reach.contains(j)) {
-        sb.append(j + 1);
         sb.append(" ");
+        sb.append(j + 1);
       }
     }
-    sb.deleteCharAt(sb.length() - 1);
     System.out.println(sb);
   }
 
