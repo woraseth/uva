@@ -1,17 +1,8 @@
-
+// time limit exceed
 
 import java.util.Scanner;
 
 public class P12090 {
-
-  static int fzero(long n, long b) {
-    int c = 0;
-    while (n % b == 0) {
-      c++;
-      n /= b;
-    }
-    return c;
-  }
 
   public static void main(String[] args) {
     StringBuilder sb = new StringBuilder();
@@ -22,14 +13,17 @@ public class P12090 {
         break;
       }
       long sum = 0;
-      long b = 2;
-      for (long i = 2; i <= n / 2; i++) {
-        int z = fzero(n, b);
-//        System.out.printf("%d %d %d%n", n, b, z);
+      for (long b = 2; b <= n / 2; b++) {
+        int z = 0;
+        long m = n;
+        while (m % b == 0) {
+          z++;
+          m /= b;
+        }
+        System.out.printf("%d %d %d%n", n, b, z);
         sum += z;
-        b++;
       }
-      sb.append(String.format("%d %d%n", n, sum + 1));   // why plus 1
+      sb.append(String.format("%d %d%n", n, sum + 1));   // plus 1 because 16_10 = 10_16
     }
     System.out.print(sb);
   }
