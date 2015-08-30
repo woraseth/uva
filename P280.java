@@ -11,7 +11,12 @@ public class P280 {
   static Set<Integer> visited;
   static Set<Integer> reach;
 
-  static void createGraph() {
+  static void createGraph(int n) {
+    g = new LinkedList[n];
+    for (int i = 0; i < g.length; i++) {
+      g[i] = new LinkedList<>();
+    }
+
     while (true) {
       int v = sc.nextInt();
       if (v == 0) {
@@ -58,21 +63,16 @@ public class P280 {
     System.out.println(sb);
   }
 
-
   public static void main(String[] args) {
     sc = new Scanner(System.in);
-    int n = sc.nextInt();
-    g = new LinkedList[n];
-    for (int i = 0; i < g.length; i++) {
-      g[i] = new LinkedList<>();
-    }
-    createGraph();
-
     while (true) {
-      int q = sc.nextInt();
-      if (q == 0) {
+      int n = sc.nextInt();
+      if (n == 0) {
         break;
       }
+      createGraph(n);
+
+      int q = sc.nextInt();
       for (int i = 0; i < q; i++) {
         question();
       }
