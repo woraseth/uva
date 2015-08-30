@@ -53,14 +53,12 @@ public class P280 {
     visited.add(v);
     dfs(v);
     System.out.printf("%d", g.length - reach.size());
-    StringBuilder sb = new StringBuilder();
     for (int j = 0; j < g.length; j++) {
       if (!reach.contains(j)) {
-        sb.append(" ");
-        sb.append(j + 1);
+        System.out.printf(" %d", j + 1);
       }
     }
-    System.out.println(sb);
+    System.out.println();
   }
 
   public static void main(String[] args) {
