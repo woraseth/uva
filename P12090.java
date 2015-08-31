@@ -1,6 +1,7 @@
 
 // time limit exceed
 // 12090 Counting Zeroes
+// by Shahriar Manzoor
 import java.util.Scanner;
 
 public class Main {
@@ -8,8 +9,7 @@ public class Main {
   static Scanner sc = new Scanner(System.in);
 
   public static void main(String[] args) {
-    StringBuilder sb = new StringBuilder();
-    while (sc.hasNextLong()) {
+    while (true) {
       long n = sc.nextLong();
       if (n == 0) {
         break;
@@ -22,8 +22,7 @@ public class Main {
           m /= b;
         }
       }
-      sb.append(String.format("%d %d%n", n, sum + 1));   // plus 1 because 16_10 = 10_16
+      System.out.printf("%d %d%n", n, sum + 1);  
     }
-    System.out.print(sb);
   }
 }
