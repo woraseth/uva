@@ -22,7 +22,7 @@ public class Main {
           m /= b;
         }
       }
-      System.out.printf("%d %d%n", n, sum + 1);  
+      System.out.printf("%d %d%n",  n, sum + 1);  
     }
   }
 }
