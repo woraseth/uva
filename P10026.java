@@ -1,6 +1,7 @@
-// 10026 Shoemaker
+// 10026 Shoemaker's Problem
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
@@ -25,13 +26,16 @@ public class Main {
   }
 
   static void question() {
-    job.sort(new Comparator<Job>() {
+    //job.sort(new Comparator<Job>() {    // java 8
+    Collections.sort(job, new Comparator<Job>() {
 
       @Override
       public int compare(Job o1, Job o2) {
-        int max = Math.max(o1.day, o2.day);
-        int a = o1.fine * max / o1.day;
-        int b = o2.fine * max / o2.day;
+//        int max = Math.max(o1.day, o2.day);
+//        int a = o1.fine * max / o1.day;
+//        int b = o2.fine * max / o2.day;
+        double a = (double) o1.fine / o1.day;
+        double b = (double) o2.fine / o2.day;
         if (a > b) {
           return -1;
         } else if (a == b) {
@@ -47,7 +51,7 @@ public class Main {
         }
       }
     });
-//    System.out.println(job);
+    System.out.println(job);
     for (int i = 0; i < job.size(); i++) {
       if (i != 0) {
         System.out.print(" ");
@@ -62,6 +66,7 @@ public class Main {
   public static void main(String[] args) {
     int test = sc.nextInt();
     for (int t = 0; t < test; t++) {
+      if (t != 0) System.out.println();
       int city = sc.nextInt();
       job = new ArrayList<>();
       for (int c = 0; c < city; c++) {
