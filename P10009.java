@@ -1,6 +1,7 @@
 
 // 10009
 // dfs on Map, remember path
+// Print a blank line between the outputs for two consecutive test cases.
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -63,7 +64,7 @@ public class Main {
 //    System.out.println(p1);
 //    System.out.println(p2);
     int i;
-    for (i = 1; i < p1.size(); i++) {
+    for (i = 1; i < Math.min(p1.size(), p2.size()); i++) {
       if (!p1.get(i).equals(p2.get(i))) {
         break;
       }
@@ -80,6 +81,9 @@ public class Main {
   public static void main(String[] args) {
     int test = sc.nextInt();
     for (int t = 0; t < test; t++) {
+      if (t != 0) {
+        System.out.println();
+      }
       int road = sc.nextInt();
       int question = sc.nextInt();
       createGraph(road);
