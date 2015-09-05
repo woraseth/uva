@@ -14,19 +14,19 @@ public class Main {
       String s = sc.next();
       String t = sc.next();
       int j = 0;
+      int count = 0;
       for (int i = 0; i < s.length(); i++) {
-        char c = s.charAt(i);
         for (int k = j; k < t.length(); k++) {
-          if (c == t.charAt(k)) {
+//          System.out.print(i + " " + j + " ");
+//          System.out.println(s.charAt(i) + " " + t.charAt(k));
+          j++;
+          if (s.charAt(i) == t.charAt(k)) {
+            count++;
             break;
           }
-          j++;
-        }
-        if (j == t.length()) {
-          isSub = false;
         }
       }
-      if (isSub) {
+      if (count == s.length()) {
         System.out.println("Yes");
       } else {
         System.out.println("No");
