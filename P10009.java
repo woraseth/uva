@@ -1,6 +1,7 @@
 
 // 10009
-// dfs on Map, remember path
+// graph
+// dfs on Map data structure, remember path
 // Print a blank line between the outputs for two consecutive test cases.
 import java.util.ArrayList;
 import java.util.HashMap;
