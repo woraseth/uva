@@ -1,4 +1,5 @@
 // 105 skyline
+// ad hoc
 
 import java.util.Scanner;
 
