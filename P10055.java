@@ -1,7 +1,7 @@
-
+// 10055 hashmat
+// ad hoc easy 
 import java.util.Scanner;
 
-// hashmat
 public class Main {
 
   static Scanner sc = new Scanner(System.in);
