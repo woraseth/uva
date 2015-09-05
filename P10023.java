@@ -1,4 +1,5 @@
 // 10023 Square root
+// I google for efficient algorithm for finding sq root of integer
 // n < 1e1001
 // run in 0.492 sec
 
