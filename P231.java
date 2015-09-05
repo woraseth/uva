@@ -1,13 +1,15 @@
 
 // 231 Testing the CATCHER
 // DP
+// opposite of class LIS O(n lg n)
+// however, this program runs in n^2
 import java.util.Scanner;
 
 public class Main {
 
   static Scanner sc = new Scanner(System.in);
 
-  static int[] h = new int[32 * 1024];
+  static int[] h;
   static int length;
   static int test = 1;
 
@@ -38,6 +40,7 @@ public class Main {
 
   public static void main(String[] args) {
     while (true) {
+      h = new int[1024];
       h[0] = sc.nextInt();
       if (h[0] == -1) {
         break;
@@ -51,7 +54,6 @@ public class Main {
         }
         h[length++] = t;
       }
-      h[length] = 0;
 //      System.out.println("length = " + length);
 
       process();
