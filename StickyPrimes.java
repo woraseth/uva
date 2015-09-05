@@ -1,3 +1,6 @@
+// Sticky Primes
+// ad hoc
+// efficient calculation
 // problem from Pete
 // I attend his lecture during Aug-Sep 2015
 // seive 1M can be done at the blink of eyes
