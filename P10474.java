@@ -1,5 +1,6 @@
 
 // 10474 marble
+// ad hoc sort and seq search
 // cannot use binary search because this problem requires
 // the first index
 //
