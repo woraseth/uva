@@ -1,4 +1,5 @@
 // 10026 Shoemaker's Problem
+// graph
 
 import java.util.ArrayList;
 import java.util.Collections;
