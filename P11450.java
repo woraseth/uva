@@ -1,4 +1,5 @@
 // 11450 Wedding shopping
+// greedy?
 
 import java.util.Scanner;
 
