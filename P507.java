@@ -16,9 +16,9 @@ public class Main {
       sum[i] = s < 0 ? 0 : s;
       count[i] = sum[i] == 0 ? 0 : count[i - 1] + 1;
     }
-    System.out.println("------");
-    System.out.println(java.util.Arrays.toString(sum));
-    System.out.println(java.util.Arrays.toString(count));
+//    System.out.println("------");
+//    System.out.println(java.util.Arrays.toString(sum));
+//    System.out.println(java.util.Arrays.toString(count));
     int max = Integer.MIN_VALUE;
     int maxIndex = -1;
     for (int i = sum.length - 1; i >= 0; i--) {
@@ -27,7 +27,7 @@ public class Main {
         max = sum[i];
         maxIndex = i;
       } else if (max == sum[i]) {
-        if (count[maxIndex] <= count[i]) {
+        if (count[i] >= count[maxIndex]) {
           maxIndex = i;
         }
       }
