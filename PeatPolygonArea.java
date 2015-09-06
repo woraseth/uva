@@ -12,7 +12,7 @@ public class Main {
 
     for (int tt = 0; tt < test; tt++) {
       int n = sc.nextInt();
-      int[] x = new int[n];
+      int[] x = new int[n + 1];
       int[] y = new int[n + 1];
       for (int i = 0; i < n; i++) {
         x[i] = sc.nextInt();
