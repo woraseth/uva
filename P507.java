@@ -22,6 +22,7 @@ public class Main {
     int max = Integer.MIN_VALUE;
     int maxIndex = -1;
     for (int i = sum.length - 1; i >= 0; i--) {
+//    for (int i = 0; i < sum.length; i++) {
       if (max < sum[i]) {
         max = sum[i];
         maxIndex = i;
@@ -33,15 +34,7 @@ public class Main {
 
     }
 
-    int zeroIndex = -1;
-    for (int i = maxIndex; i >= 0; i--) {
-      if (sum[i] == 0) {
-        zeroIndex = i;
-        break;
-      }
-    }
-//    System.out.println(zeroIndex);
-//    System.out.println(maxIndex);
+    int zeroIndex = maxIndex - count[maxIndex];
     if (sum[maxIndex] == 0) {
       System.out.printf("Route %d has no nice parts%n", t + 1);
     } else {
