@@ -1,8 +1,10 @@
 // 12090 - Counting Zeroes
 // after discussing with ake
-// got WA even
+// TLE
 // cover if cannot factor   isPrime()
 // cover input 1, output 0
+// cover 9999999999999 24
+
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -14,7 +16,7 @@ public class Main {
   static Scanner sc = new Scanner(System.in);
 
   static boolean[] nonPrime;
-  static int[] prime = new int[300000];   // 283146 primes less than 4M
+  static int[] prime = new int[100000000];   // 283146 primes less than 4M
   static int primeCount;
   static List<Integer> base;
   static List<Integer> power;
@@ -49,6 +51,7 @@ public class Main {
     for (int i = 0; i < primeCount; i++) {
       int p = prime[i];
       if (p > n) {
+//        System.out.println(p + " " + n);
         break;
       }
 
@@ -66,12 +69,12 @@ public class Main {
   }
 
   static void seive() {
-    int max = 4 * 1000 * 1000;
+    int max = 270 * 1000 * 1000;
     nonPrime = new boolean[max];
-    for (int i = 2; i < nonPrime.length; i++) {
+    for (int i = 2; i < max; i++) {
       if (!nonPrime[i]) {
         prime[primeCount++] = i;
-        for (int j = i + i; j < nonPrime.length; j += i) {
+        for (int j = i + i; j < max; j += i) {
           nonPrime[j] = true;
         }
       }
