@@ -1,5 +1,8 @@
 // 12090 - Counting Zeroes
-// don't forget to check if cannot factor (base.size() == 0)
+// after discussing with ake
+// got WA even
+// cover if cannot factor   isPrime()
+// cover input 1, output 0
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -11,7 +14,7 @@ public class Main {
   static Scanner sc = new Scanner(System.in);
 
   static boolean[] nonPrime;
-  static int[] prime = new int[5761455];   // 5761455 primes less than 100M
+  static int[] prime = new int[300000];   // 283146 primes less than 4M
   static int primeCount;
   static List<Integer> base;
   static List<Integer> power;
@@ -28,7 +31,7 @@ public class Main {
         allFactor(n, index + 1, f * pk);
       }
     } else {
-//      System.out.println(f);
+//      System.out.println("factor " + f);
       if (f != 1) {
         int count = 0;
         while (n % f == 0) {
@@ -63,7 +66,7 @@ public class Main {
   }
 
   static void seive() {
-    int max = 50 * 1000 * 1000;
+    int max = 4 * 1000 * 1000;
     nonPrime = new boolean[max];
     for (int i = 2; i < nonPrime.length; i++) {
       if (!nonPrime[i]) {
@@ -77,29 +80,34 @@ public class Main {
 
   public static void main(String[] args) {
     seive();
+//    System.out.println(primeCount);
+//    System.out.println(prime[primeCount-1]);  // 3999971^2 = 15999768000841 1.60e13
     while (true) {
       long n = sc.nextLong();
 
       if (n == 0) {
         break;
       }
-      
+      // special case
+      if (n == 1) {
+        System.out.println("1 0");
+        continue;
+      }
       // test prime
       BigInteger b = new BigInteger(n + "");
-      if (b.isProbablePrime(128)) {  // 2714901685147 is prime
+      if (b.isProbablePrime(256)) {  
         System.out.printf("%s 1%n", b.toString());
         continue;
       }
-
+      // normal case
       factor(n);
       if (base.size() != 0) {
         sum = 0;
         allFactor(n, 0, 1);
         System.out.printf("%d %d%n", n, sum);
       } else {
-        System.out.printf("%d 1%n", n);
+        throw new RuntimeException();  // n is prime (should be previously detected!!!)
       }
-
     }
   }
 }
