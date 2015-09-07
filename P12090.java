@@ -1,6 +1,6 @@
 // 12090 - Counting Zeroes
 // after discussing with ake
-// ACCEPT!!!
+// TLE
 // cover if cannot factor   isPrime()
 // cover input 1, output 0
 // cover 9999999999999 24
@@ -68,20 +68,13 @@ public class Main {
       }
     }
     if (n != 1) {
-      BigInteger b = new BigInteger(n + "");
-
-      if (b.isProbablePrime(256)) {
-        base.add( n);
-        power.add(1);
-      } else {
-        throw new RuntimeException();
-      }
+      base.add(n);
+      power.add(1);
     }
-
   }
 
   static void seive() {
-    int max = 40 * 1000 * 1000;
+    int max = 30 * 1000 * 1000;
     nonPrime = new boolean[max];
     for (int i = 2; i < max; i++) {
       if (!nonPrime[i]) {
