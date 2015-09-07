@@ -1,11 +1,12 @@
 // 12090 - Counting Zeroes
 // after discussing with ake
-// TLE
+// ACCEPT!!!
 // cover if cannot factor   isPrime()
 // cover input 1, output 0
 // cover 9999999999999 24
 
-
+// 9999999999999 = 265371653 x 3^2 x 53 x 79
+// sqrt(9999999999999) = 3162277
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +17,9 @@ public class Main {
   static Scanner sc = new Scanner(System.in);
 
   static boolean[] nonPrime;
-  static int[] prime = new int[100000000];   // 283146 primes less than 4M
+  static int[] prime = new int[5000000];   // 283146 primes less than 4M
   static int primeCount;
-  static List<Integer> base;
+  static List<Long> base;
   static List<Integer> power;
   static List<Integer> factor;
   static int sum = 0;
@@ -61,15 +62,26 @@ public class Main {
           n /= p;
           count++;
         }
-        base.add(p);
+        base.add((long) p);
         power.add(count);
 //        System.out.printf("%d^%d%n", p, count);
       }
     }
+    if (n != 1) {
+      BigInteger b = new BigInteger(n + "");
+
+      if (b.isProbablePrime(256)) {
+        base.add( n);
+        power.add(1);
+      } else {
+        throw new RuntimeException();
+      }
+    }
+
   }
 
   static void seive() {
-    int max = 270 * 1000 * 1000;
+    int max = 40 * 1000 * 1000;
     nonPrime = new boolean[max];
     for (int i = 2; i < max; i++) {
       if (!nonPrime[i]) {
@@ -98,7 +110,7 @@ public class Main {
       }
       // test prime
       BigInteger b = new BigInteger(n + "");
-      if (b.isProbablePrime(256)) {  
+      if (b.isProbablePrime(256)) {
         System.out.printf("%s 1%n", b.toString());
         continue;
       }
