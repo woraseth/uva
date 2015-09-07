@@ -17,8 +17,10 @@ public class Main {
   static Scanner sc = new Scanner(System.in);
 
   static boolean[] nonPrime;
-  static final int max = 30 * 1000 * 1000;
-  static int[] prime = new int[2000000];   // 29999999 primes less than 'max'
+//  static final int max = 4 * 1000 * 1000;  // sqrt(10e13) = 3162278
+//  static int[] prime = new int[283146];   // 228180 primes less than 'max'
+    static final int max = 3170000;  // sqrt(10e13) = 3162278 WA
+  static int[] prime = new int[228180];   // 228180 primes less than 'max'
   static int primeCount;
   static List<Long> base;
   static List<Integer> power;
