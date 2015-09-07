@@ -2,7 +2,7 @@
 // after discussing with ake
 // TLE
 // cover if cannot factor   isPrime()
-// cover input 1, output 0
+// cover 1 0
 // cover 9999999999999 24
 
 // 9999999999999 = 265371653 x 3^2 x 53 x 79
@@ -17,7 +17,8 @@ public class Main {
   static Scanner sc = new Scanner(System.in);
 
   static boolean[] nonPrime;
-  static int[] prime = new int[5000000];   // 283146 primes less than 4M
+  static final int max = 30 * 1000 * 1000;
+  static int[] prime = new int[2000000];   // 29999999 primes less than 'max'
   static int primeCount;
   static List<Long> base;
   static List<Integer> power;
@@ -52,7 +53,6 @@ public class Main {
     for (int i = 0; i < primeCount; i++) {
       int p = prime[i];
       if (p > n) {
-//        System.out.println(p + " " + n);
         break;
       }
 
@@ -68,13 +68,12 @@ public class Main {
       }
     }
     if (n != 1) {
-      base.add(n);
+      base.add(n);  // 9999999999999 = 265371653 x 3^2 x 53 x 79
       power.add(1);
     }
   }
 
   static void seive() {
-    int max = 30 * 1000 * 1000;
     nonPrime = new boolean[max];
     for (int i = 2; i < max; i++) {
       if (!nonPrime[i]) {
@@ -88,8 +87,8 @@ public class Main {
 
   public static void main(String[] args) {
     seive();
-//    System.out.println(primeCount);
-//    System.out.println(prime[primeCount-1]);  // 3999971^2 = 15999768000841 1.60e13
+//    System.out.println(primeCount); // 1857859
+//    System.out.println(prime[primeCount-1]);  // 29999999
     while (true) {
       long n = sc.nextLong();
 
@@ -109,7 +108,7 @@ public class Main {
       }
       // normal case
       factor(n);
-      if (base.size() != 0) {
+      if (base.size() != 0) {  // can factor
         sum = 0;
         allFactor(n, 0, 1);
         System.out.printf("%d %d%n", n, sum);
