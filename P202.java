@@ -1,4 +1,11 @@
+// cycle occurs when dividing with the same number
 
+//1/397 = 0.(00251889168765743073047858942065491183879093198992...)
+//   99 = number of digits in repeating cycle
+
+//3/10 + 1/39700 
+//119110/397000 = 0.30(002518891687657430730478589420654911838790931989...)
+//   99 = number of digits in repeating cycle
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -24,10 +31,10 @@ public class Main {
       int t;
       while (true) {
         int a;
-         t = n * 10;
-        n *= 10;
-        a = n / d;
-        n = n % d;
+        t = n * 10;
+
+        a = t / d;
+        n = t % d;
 //      System.out.println(list);
         if (!list.contains(t)) {
           result.add(a);
@@ -57,7 +64,7 @@ public class Main {
         sb.insert(0, intPart + ".");
       }
       System.out.printf("%d/%d = %s%n", m, d, sb);
-      System.out.printf("   %d = number of digits in repeating cycle%n", cycle);
+      System.out.printf("   %d = number of digits in repeating cycle%n%n", cycle);
 
     }
   }
