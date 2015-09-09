@@ -1,5 +1,5 @@
 // 11450 Wedding shopping
-// greedy?
+// DP
 
 import java.util.Scanner;
 
