@@ -1,5 +1,5 @@
 // 10026 Shoemaker's Problem
-// graph
+// greedy
 
 import java.util.ArrayList;
 import java.util.Collections;
