@@ -41,20 +41,11 @@ public class Main {
           return -1;
         } else if (a == b) {
           return 0;
-          // unnecessary
-//          if (o1.day > o2.day) {
-//            return 1;
-//          } else if (o1.day == o2.day) {
-//            return 0;
-//          } else {
-//            return -1;
-//          }
         } else {
           return 1;
         }
       }
     });
-//    System.out.println(job);
     for (int i = 0; i < job.size(); i++) {
       if (i != 0) {
         System.out.print(" ");
