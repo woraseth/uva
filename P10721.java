@@ -1,6 +1,9 @@
 // 10721 - Bar Codes
 // dp
 
+// 853 = 543 + 643 + 743    sum of m term (3)
+
+
 import java.util.Scanner;
 
 public class Main {
@@ -10,8 +13,8 @@ public class Main {
     for (int i = 0; i < nn; i++) {
       table[i][0] = 1;
     }
-    for (int i = 1; i <= mm; i++) {
-      table[i][1] = i <= kk ? 1 : 0;
+    for (int i = 1; i <= mm && i <= nn; i++) {
+      table[i][1] = 1;
     }
     for (int k = 2; k <= kk; k++) {
       for (int n = 0; n <= nn; n++) {
