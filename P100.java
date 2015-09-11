@@ -1,5 +1,5 @@
 // 100 - The 3n + 1 problem
-
+// has to swap 2 times
 import java.util.Scanner;
 
 public class Main {
