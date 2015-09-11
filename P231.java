@@ -4,7 +4,7 @@
 // opposite of class LIS O(n lg n)
 // however, this program runs in n^2
 import java.util.Scanner;
-
+ 
 public class Main {
 
   static Scanner sc = new Scanner(System.in);
