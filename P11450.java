@@ -1,6 +1,6 @@
 // 11450 Wedding shopping
 // DP
-
+ 
 import java.util.Scanner;
 
 public class Main {
