@@ -1,5 +1,5 @@
 
-// 10474 marble
+// 10474 Where is the Marble?
 // ad hoc sort and seq search
 // cannot use binary search because this problem requires
 // the first index
