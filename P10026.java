@@ -1,6 +1,6 @@
 // 10026 Shoemaker's Problem
 // greedy
-
+ 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
