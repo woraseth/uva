@@ -26,7 +26,7 @@ public class Main {
   static List<Integer> power;
   static List<Integer> factor;
   static int sum = 0;
-
+ 
   static void allFactor(long n, int index, long f) {
     if (index < power.size()) {
       for (int i = 0; i <= power.get(index); i++) {
