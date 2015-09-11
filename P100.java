@@ -1,5 +1,5 @@
 // 100 - The 3n + 1 problem
-// WA
+
 import java.util.Scanner;
 
 public class Main {
@@ -10,7 +10,9 @@ public class Main {
     while (sc.hasNextInt()) {
       int i = sc.nextInt();
       int j = sc.nextInt();
+      boolean swap = false;
       if (i > j) {  // swap :(
+        swap = true;
         int t = i;
         i = j;
         j = t;
@@ -31,6 +33,11 @@ public class Main {
         if (max < count) {
           max = count;
         }
+      }
+      if (swap) {  // swap :(
+        int t = i;
+        i = j;
+        j = t;
       }
       System.out.printf("%d %d %d%n", i, j, max);
     }
