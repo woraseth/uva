@@ -1,5 +1,3 @@
-
-
 // 10340 All in All
 // greedy
 import java.util.Scanner;
