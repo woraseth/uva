@@ -1,4 +1,4 @@
-// 10055 hashmat
+// 10055 Hashmat the Brave Warrior 
 // ad hoc easy 
 import java.util.Scanner;
 
