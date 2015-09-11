@@ -21,7 +21,7 @@ public class Main {
       return Integer.MIN_VALUE;
     }
   }
-
+ 
   static class Range {
 
     int left;
