@@ -1,5 +1,5 @@
 // 201 - Squares
-// ad hoc
+// ad hoc 
 // inner class, Set, hashCode, equals
 
 import java.util.HashSet;
