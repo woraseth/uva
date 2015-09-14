@@ -24,5 +24,5 @@ public class Main {
       
       System.out.println(process(n));
     }
-  }
+  } 
 }
