@@ -3,7 +3,7 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Main {
+public class Main { 
 
   static Scanner sc = new Scanner(System.in);
   static boolean[] isPrime;
