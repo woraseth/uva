@@ -1,7 +1,8 @@
 // 369 - Combinations
-// WA
+// 0.516 sec
 // another method is Binomial Coefficient.
 
+import java.math.BigInteger;
 import java.util.Scanner;
 
 public class Main {
@@ -15,24 +16,15 @@ public class Main {
       if (n == 0 && m == 0) {
         break;
       }
-      long c = 1;
-      if (m > n / 2) {
+      BigInteger c = BigInteger.ONE;
         for (int i = m + 1; i <= n; i++) {
-          c *= i;
+          c = c.multiply(new BigInteger("" + i));
         }
         for (int i = 2; i <= n - m; i++) {
-          c /= i;
+          c = c.divide(new BigInteger("" + i));
         }
-      } else {
-        for (int i = n - m + 1; i <= n; i++) {
-          c *= i;
-        }
-        for (int i = 2; i <= m; i++) {
-          c /= i;
-        }
-      }
 
-      System.out.printf("%d things taken %d at a time is %d exactly.%n", n, m, c);
+      System.out.printf("%d things taken %d at a time is %s exactly.%n", n, m, c.toString());
     }
   }
 }
