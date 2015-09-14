@@ -1,5 +1,6 @@
 // 369 - Combinations
 // WA
+// another method is Binomial Coefficient.
 
 import java.util.Scanner;
 
@@ -15,12 +16,22 @@ public class Main {
         break;
       }
       long c = 1;
-      for (int i = n - m + 1; i <= n; i++) {
-        c *= i;
+      if (m > n / 2) {
+        for (int i = m + 1; i <= n; i++) {
+          c *= i;
+        }
+        for (int i = 2; i <= n - m; i++) {
+          c /= i;
+        }
+      } else {
+        for (int i = n - m + 1; i <= n; i++) {
+          c *= i;
+        }
+        for (int i = 2; i <= m; i++) {
+          c /= i;
+        }
       }
-      for (int i = 2; i <= m; i++) {
-        c /= i;
-      }
+
       System.out.printf("%d things taken %d at a time is %d exactly.%n", n, m, c);
     }
   }
