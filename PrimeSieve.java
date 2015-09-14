@@ -1,4 +1,4 @@
-// seive
+// sieve
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -9,7 +9,7 @@ public class Main {
 
   static boolean[] isPrime;
 
-  static void seive(int n) {
+  static void sieve(int n) {
     isPrime = new boolean[n];
     Arrays.fill(isPrime, 0, n, true);
     for (int i = 2; i < isPrime.length; i++) {
