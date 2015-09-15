@@ -1,4 +1,5 @@
 // 12090 - Counting Zeroes
+// by Shahriar Manzoor
 // after discussing with ake
 // TLE
 // cover if cannot factor   isPrime()
