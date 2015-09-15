@@ -1,5 +1,7 @@
 // 147 - Dollars
-// TLE if create DP table 
+// TLE if create DP table for every test case
+// create DP table for the largest amount of money
+// and use that table to answer every question
 
 import java.util.Scanner;
 
