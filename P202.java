@@ -1,4 +1,5 @@
-// 202 - Repeating Decimals
+// 202 - Repeating Decimals 
+// cycle detection
 
 //1/397 = 0.(00251889168765743073047858942065491183879093198992...)
 //   99 = number of digits in repeating cycle
