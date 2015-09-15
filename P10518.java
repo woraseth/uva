@@ -1,8 +1,8 @@
 // 10518 - How Many Calls?
-// TLE even with cycle detection
-// cycle occurs when a pair is repeated
-// cycle can be longer than the base
-// should find cycle in Parallel.  use only 25% cpu
+// 1. no cycle detection
+// 2. naive (too complex) cycle detection 
+// 3. smart cycle detection. for base b cycle occurs when 
+//    1, 1, ...., 1, b-1, 1, 1
 
 import java.util.Scanner;
 
@@ -15,46 +15,36 @@ public class Main {
     int t = 1;
 
     while (true) {
-      int n = sc.nextInt();
+      final long n = sc.nextLong();
       int b = sc.nextInt();
       if (n == 0 && b == 0) {
         break;
       }
       int x0 = 1;
       int x1 = 1;
-      call = new int[12000];
+      final int maxCycle = 12000;
+      call = new int[maxCycle];
       call[0] = 1;
       call[1] = 1;
       int start = 0;
       int stop = 0;
+      int i;
       outer:
-      for (int i = 2; i < 12000; i++) {
+      for (i = 2; i < maxCycle; i++) {
         int s = x0 + x1 + 1;
         x0 = x1;
         x1 = s % b;
         call[i] = x1;
-        // find cycle
-        for (int j = 0; j <= i; j++) {
-          int p0 = call[j];
-          int p1 = call[j + 1];
-          for (int k = j + 1; k <= i; k++) {
-            if (p0 == call[k] && p1 == call[k + 1]) {
-              start = j;
-              stop = k;
-              break outer;
-            }
-          }
+        // cycle detection
+        if (call[i] == b - 1 && call[i-1] == 1) {
+          break;
         }
       }
 
-      System.out.printf("%d %d%n", start, stop);
-      if (n <= start) {
-        System.out.printf("Case %d: %d %d %d%n", t, n, b, call[n]);
+      if (n <= i) {
+        System.out.printf("Case %d: %d %d %d%n", t, n, b, call[(int) n]);
       } else {
-        int cycle = stop - start;
-        System.out.printf("cycle %d%n", cycle);
-        int index = (n - start) % cycle;
-        System.out.printf("Case %d: %d %d %d%n", t, n, b, call[start + index]);
+        System.out.printf("Case %d: %d %d %d%n", t, n, b, call[(int) (n % (i+1))]);
       }
       t++;
     }
