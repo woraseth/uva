@@ -38,4 +38,4 @@ public class Main {
     s.deleteCharAt(s.length() - 1);
     System.out.println(s);
   }
-}
+} 
