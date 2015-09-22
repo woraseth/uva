@@ -8,16 +8,18 @@ public class Main {
 
   final static Scanner sc = new Scanner(System.in);
 
-  static boolean[] isPrime;
+  static boolean[] isComposite;
 
   static void sieve(int n) {
-    isPrime = new boolean[n + 1];
-    Arrays.fill(isPrime, 0, n, true);
-    for (int i = 2; i < isPrime.length; i++) {
-      if (isPrime[i]) {
+    isComposite = new boolean[n + 1];
+    isComposite[0] = true;
+    isComposite[1] = true;
+    //Arrays.fill(isNotPrime, 0, n, true);
+    for (int i = 2; i < isComposite.length; i++) {
+      if (!isComposite[i]) {
 //        System.out.println(i);
-        for (int j = i + i; j < isPrime.length; j += i) {
-          isPrime[j] = false;
+        for (int j = i + i; j < isComposite.length; j += i) {
+          isComposite[j] = true;
         }
       }
     }
@@ -40,7 +42,7 @@ public class Main {
       int end = sc.nextInt();
       int count = 0;
       for (int i = start; i <= end; i++) {
-        if (isPrime[i] && isPrime[sum(i)]) {
+        if (!isComposite[i] && !isComposite[sum(i)]) {
           count++;
         }
       }
