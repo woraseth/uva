@@ -1,7 +1,6 @@
 // 10533 - Digit Primes
-// TLE
-// reading input 0.232
-// sieve         0.069
+// Java 2.759 vs C 1.455
+// Fight with TLE : BufferedReader, StringTokenizer, index 'dp' 
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -40,27 +39,34 @@ public class Main {
 
   public static void main(String[] args) throws Exception {
     sieve(1000000);
-    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     StringBuilder sb = new StringBuilder();
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     int tt = Integer.parseInt(br.readLine());
     for (int t = 0; t < tt; t++) {
       StringTokenizer tokenizer = new StringTokenizer(br.readLine());
       int start = Integer.parseInt(tokenizer.nextToken());
       int end = Integer.parseInt(tokenizer.nextToken());
-      int count = 0;
       int i = 0;
       while (dp[i++] < start);
-      int si = i - 1;
-      if (end > 500000) {
-        i = dpLen - 1;
-        while (dp[i--] > end);
-        sb.append(i - si + 2);
+
+      int j;
+      if (end > 809213) {
+        j = dpLen - 1;
+      } else if (end > 626953) {
+        j = 25000;
+      } else if (end > 453371) {
+        j = 20000;
+      } else if (end > 287851) {
+        j = 15000;
       } else {
-        while (dp[i++] <= end);
-        sb.append(i - si - 1);
+        j = 10000;
       }
-//      sb.append('\n');
+
+      while (dp[j--] > end);
+
+      sb.append(j - i + 3);
+      sb.append('\n');
     }
-//    System.out.print(sb);
+    System.out.print(sb);
   }
 }
