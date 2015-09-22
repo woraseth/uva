@@ -1,61 +1,66 @@
 // 10533 - Digit Primes
-// TLE 
+// TLE
+// reading input 0.232
+// sieve         0.069
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
 
-  final static Scanner sc = new Scanner(System.in);
-
   static boolean[] isComposite;
-  static boolean[] isComposite2;
+  static int[] dp;
+  static int dpLen;
 
   static void sieve(int n) {
+    dp = new int[30200];
+    dpLen = 0;
     isComposite = new boolean[n + 1];
     isComposite[0] = true;
     isComposite[1] = true;
-    //Arrays.fill(isNotPrime, 0, n, true);
     for (int i = 2; i < isComposite.length; i++) {
       if (!isComposite[i]) {
-//        System.out.println(i);
+        int m = i;
+        int s = 0;
+        while (m != 0) {
+          s += m % 10;
+          m /= 10;
+        }
+        if (!isComposite[s]) {
+          dp[dpLen++] = i;
+        }
         for (int j = i + i; j < isComposite.length; j += i) {
           isComposite[j] = true;
         }
       }
     }
-    isComposite2 = new boolean[n + 1];
-    for (int i = 0; i < isComposite.length; i++) {
-      if (isComposite[i])
-        isComposite2[i] = true;
-      else {
-        isComposite2[i] = isComposite[sum(i)];
-      }
-    }
+    dp[dpLen] = Integer.MAX_VALUE;  // terminate
   }
 
-  static int sum(int n) {
-    int s = 0;
-    while (n != 0) {
-      s += n % 10;
-      n /= 10;
-    }
-    return s;
-  }
-
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
     sieve(1000000);
-//    System.out.println("isComposite = " + java.util.Arrays.toString(isComposite));
-    int tt = sc.nextInt();
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringBuilder sb = new StringBuilder();
+    int tt = Integer.parseInt(br.readLine());
     for (int t = 0; t < tt; t++) {
-      int start = sc.nextInt();
-      int end = sc.nextInt();
+      StringTokenizer tokenizer = new StringTokenizer(br.readLine());
+      int start = Integer.parseInt(tokenizer.nextToken());
+      int end = Integer.parseInt(tokenizer.nextToken());
       int count = 0;
-      for (int i = start; i <= end; i++) {
-        if (!isComposite2[i]) {
-          count++;
-        }
+      int i = 0;
+      while (dp[i++] < start);
+      int si = i - 1;
+      if (end > 500000) {
+        i = dpLen - 1;
+        while (dp[i--] > end);
+        sb.append(i - si + 2);
+      } else {
+        while (dp[i++] <= end);
+        sb.append(i - si - 1);
       }
-      System.out.println(count);
+//      sb.append('\n');
     }
+//    System.out.print(sb);
   }
 }
