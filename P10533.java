@@ -1,7 +1,6 @@
 // 10533 - Digit Primes
-// TLE
+// TLE 
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -9,6 +8,7 @@ public class Main {
   final static Scanner sc = new Scanner(System.in);
 
   static boolean[] isComposite;
+  static boolean[] isComposite2;
 
   static void sieve(int n) {
     isComposite = new boolean[n + 1];
@@ -21,6 +21,14 @@ public class Main {
         for (int j = i + i; j < isComposite.length; j += i) {
           isComposite[j] = true;
         }
+      }
+    }
+    isComposite2 = new boolean[n + 1];
+    for (int i = 0; i < isComposite.length; i++) {
+      if (isComposite[i])
+        isComposite2[i] = true;
+      else {
+        isComposite2[i] = isComposite[sum(i)];
       }
     }
   }
@@ -36,13 +44,14 @@ public class Main {
 
   public static void main(String[] args) {
     sieve(1000000);
+//    System.out.println("isComposite = " + java.util.Arrays.toString(isComposite));
     int tt = sc.nextInt();
     for (int t = 0; t < tt; t++) {
       int start = sc.nextInt();
       int end = sc.nextInt();
       int count = 0;
       for (int i = start; i <= end; i++) {
-        if (!isComposite[i] && !isComposite[sum(i)]) {
+        if (!isComposite2[i]) {
           count++;
         }
       }
