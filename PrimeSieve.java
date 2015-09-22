@@ -10,7 +10,7 @@ public class Main {
   static boolean[] isPrime;
 
   static void sieve(int n) {
-    isPrime = new boolean[n];
+    isPrime = new boolean[n+1];
     Arrays.fill(isPrime, 0, n, true);
     for (int i = 2; i < isPrime.length; i++) {
       if (isPrime[i]) {
