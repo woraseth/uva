@@ -12,7 +12,7 @@ public class Main {
   static void removeOtherStatement(List<String> list) {
     for (int i = list.size() - 1; i >= 0; i--) {
       String line = list.get(i);
-      if (line.charAt(7) != '=') {
+      if (!line.contains("=")) {
         list.remove(i);
       }
     }
@@ -39,12 +39,9 @@ public class Main {
   }
 
   static char getLeftVar(String line) {
-    String[] a = line.split("[=*+-/ ]+");
-    for (int i = 0; i < a.length; i++) {
-      String s = a[i];
-      if (s.length() == 1 && 'a' <= s.charAt(0) && s.charAt(0) <= 'z') {
-        return s.charAt(0);
-      }
+    for (int i = 0; i < line.length(); i++) {
+      if (line.charAt(i) == '=')
+        return line.charAt(i-1);
     }
     throw new RuntimeException();
   }
