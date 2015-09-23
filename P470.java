@@ -147,7 +147,10 @@ public class Main {
     }
 
     outer:
-    while (list.size() != totalLine) {
+    //while (list.size() != totalLine) {
+    for (int asdf = 0; asdf < 1; asdf++) {
+      
+    
       Set<Character> willUse = new HashSet<>(list.get(list.size() - 1).vars);
 //      print(list);
 //      System.out.println("---------");
@@ -168,7 +171,6 @@ public class Main {
             }
           }
           if (canFind == false) {
-
             list.remove(i);
           }
           continue outer;
