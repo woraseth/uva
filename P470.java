@@ -1,10 +1,13 @@
 // 470 - Nasty Virus
+// filter from 
+// 40k < n < 80k
+// to
+// 4k < n < 5k
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -128,42 +131,54 @@ public class Main {
     while (sc.hasNextLine()) {
       alist.add(sc.nextLine());
     }
-    
-   removeOtherStatement(alist);
+
+    removeOtherStatement(alist);
+        if (alist.size() > 80000)
+      throw new RuntimeException();
+
 //    for (String s : alist) {
 //      System.out.println(s);
 //    }
 //    System.out.println("-----------------");
 
-    List<Line> list = new ArrayList<>();
+    List<Line> list = new LinkedList<>();
     for (int i = 0; i < alist.size(); i++) {
       list.add(new Line(alist.get(i)));
     }
 
-
     outer:
     while (list.size() != totalLine) {
-      Map<Character, Integer> map = new HashMap<>();
       Set<Character> willUse = new HashSet<>(list.get(list.size() - 1).vars);
-      
+//      print(list);
+//      System.out.println("---------");
+      int size = list.size();
       for (int i = list.size() - 2; i >= 0; i--) {
         char v = list.get(i).v;
 //        System.out.println("v = " + v);
 //        System.out.println("willUse = " + willUse);
 //        System.out.println("map = " + map);
         if (!willUse.contains(v)) {
-          if (map.get(v) != null) {
-            int xxx = map.get(v);
-            list.remove(xxx);
-          } else {
+          boolean canFind = false;
+//          find statement below that use v and remove the statement
+          for (int j = i + 1; j < list.size(); j++) {
+            if (v == list.get(j).v) {
+              list.remove(j);
+              canFind = true;
+              break;
+            }
+          }
+          if (canFind == false) {
+
             list.remove(i);
           }
           continue outer;
         } else {
           willUse.remove((Character) v);
           willUse.addAll(list.get(i).vars);
-          map.put(v, i);
         }
+      }
+      if (list.size() == size) {
+        throw new RuntimeException();
       }
     }
     System.out.println(first);
@@ -171,7 +186,7 @@ public class Main {
   }
 }
 //          boolean canFind = false;
-          // find statement below that use v and remove the statement
+// find statement below that use v and remove the statement
 //          for (int j = i + 1; j < list.size(); j++) {
 //            if (v == list.get(j).v) {
 //              noChange = false;
@@ -184,3 +199,17 @@ public class Main {
 //            noChange = false;
 //            list.remove(i);
 //          }
+
+//        if (!willUse.contains(v)) {
+//          if (map.get(v) != null) {
+//            list.remove((int) map.get(v));
+//            map.put(v, i);
+//          } else {
+//            list.remove(i);
+//          }
+////          continue outer;
+//        } else {
+//          willUse.remove((Character) v);
+//          willUse.addAll(list.get(i).vars);
+//          map.put(v, i);
+//        }
