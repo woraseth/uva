@@ -1,4 +1,5 @@
 // 10181 - 15-Puzzle Problem
+// meet in the middle cannot handle 30 depth
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -68,10 +69,11 @@ public class Main {
     }
 
     public int hashCode() {
-      int sum = 7;
-      for (int i = 0; i < 16; i++) {
-        sum += board[i] * i;
-      }
+      int sum = zero;
+      sum += board[(zero + 2) % 16];
+      sum += board[(zero + 3) % 16];
+      sum += board[(zero + 5) % 16];
+      sum += board[(zero + 7) % 16];
       return sum;
     }
 
@@ -81,6 +83,9 @@ public class Main {
 
     public boolean equals(Object otherObject) {
       State other = (State) otherObject;
+      if (zero != other.zero) {
+        return false;
+      }
       return Arrays.equals(board, other.board);
     }
   }
@@ -126,7 +131,8 @@ public class Main {
     for (State s : set) {
       for (int i = 0; i < 4; i++) {
         if (s.canMove(i)) {
-          res.add(s.move(i));
+          State ns = s.move(i);
+          res.add(ns);
         }
       }
     }
@@ -134,23 +140,26 @@ public class Main {
   }
 
   public static void main(String[] args) {
-    int tt = sc.nextInt();
-    for (int t = 0; t < tt; t++) {
-      int[] start = new int[16];
+//    int tt = sc.nextInt();
+//    for (int t = 0; t < tt; t++) {
+//      int[] start = new int[16];
+    int[] start = {1,2,3,4,5,6,7,8,9,10,11,12,13,15,14,0};
       int[] goal = new int[16];
       int zero = -1;
       for (int i = 0; i < goal.length; i++) {
         goal[i] = i + 1;
-        start[i] = sc.nextInt();
+//        start[i] = sc.nextInt();
         if (start[i] == 0) {
           zero = i;
         }
       }
       goal[15] = 0;
+      State ss = new State(start, zero, "");
+      State sg = new State(goal, 15, "");
       Set<State> upper = new HashSet<>();
-      upper.add(new State(start, zero, ""));
       Set<State> lower = new HashSet<>();
-      lower.add(new State(goal, 15, ""));
+      upper.add(ss);
+      lower.add(sg);
       int count = 0;
       while (true) {
 //        print(upper, lower);
@@ -158,21 +167,30 @@ public class Main {
           break;
         }
         upper = expand(upper);
+//        for (State s : upper) {
+//          all.add(s);
+//        }
 //        print(upper, lower);
         count++;
         if (match(upper, lower)) {
           break;
         }
         lower = expand(lower);
+//        for (State s : lower) {
+//          all.add(s);
+//        }
         count++;
+        System.out.println(count);
+        System.out.println(upper.size());
+        System.out.println(lower.size());
         if (count >= 50) {
-          System.out.println("IMPOSS");
+          System.out.println("This puzzle is not solvable.");
           break;
         }
       }
-    }
+//    }
   }
-  
+
   static void print(Set<State> u, Set<State> l) {
     System.out.println("upper");
     System.out.println(u);
@@ -180,38 +198,51 @@ public class Main {
     System.out.println(l);
     System.out.println("--------------------");
   }
+  static Set<State> all = new HashSet<>();
 }
 
 /*
 
-1 2 3 4
-5 6 7 8
-9 10 11 12
-13 14 15 0
-0
+ 1 2 3 4
+ 5 6 7 8
+ 9 10 11 12
+ 13 14 15 0
+ 0
 
-1 2 3 4
-5 6 7 8
-9 10 11 12
-13 15 14 0
-IMPOSSIBLE
+ 1 2 3 4
+ 5 6 7 8
+ 9 10 11 12
+ 13 15 14 0
+ IMPOSSIBLE
 
-1 2 3 4
-5 6 7 8
-9 10 11 12
-13 14 0 15
-1 R
+ 1 2 3 4
+ 5 6 7 8
+ 9 10 11 12
+ 13 14 0 15
+ 1 R
 
-1 2 3 4
-5 6 7 8
-9 10 0 12
-13 14 11 15
-2 DR
+ 1 2 3 4
+ 5 6 7 8
+ 9 10 0 12
+ 13 14 11 15
+ 2 DR
 
-1 2 3 4
-5 6 7 8
-9 10 12 0
-13 14 11 15
-3 LDR
+ 1 2 3 4
+ 5 6 7 8
+ 9 10 12 0
+ 13 14 11 15
+ 3 LDR
 
-*/
+6 2 8 4 
+12 14 1 10 
+13 15 3 9 
+11 0 5 7
+50
+
+6 8 4 2 
+12 14 1 10 
+13 15 3 9 
+11 0 5 7
+51
+
+ */
