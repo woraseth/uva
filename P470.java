@@ -1,15 +1,15 @@
 // 470 - Nasty Virus
+// TLE even change Set to bit operation (26 vars)
+// 
 // filter from 
 // 40k < n < 80k
 // to
 // 4k < n < 5k
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Set;
 
 public class Main {
 
@@ -17,7 +17,7 @@ public class Main {
 
     String line;
     char v;
-    List<Character> vars;
+    int vars;
 
     Line(String line) {
       this.line = line;
@@ -35,17 +35,30 @@ public class Main {
       throw new RuntimeException();
     }
 
-    List<Character> getRightVars() {
-      List<Character> list = new ArrayList<>();
+    int getRightVars() {
+      int res = 0;
       String[] a = line.split("=");
       a = a[1].split("[*+-/ ]+");
       for (int i = 0; i < a.length; i++) {
         String s = a[i];
-        if (s.length() == 1 && 'a' <= s.charAt(0) && s.charAt(0) <= 'z') {
-          list.add(s.charAt(0));
+        if (s.length() == 1) {
+          char c = s.charAt(0);
+          if ('a' <= c && c <= 'z') {
+            res |= 1 << (c - 'a');
+          }
         }
       }
-      return list;
+      return res;
+    }
+
+    public String toString() {
+      StringBuilder sb = new StringBuilder(v + "=");
+      for (int i = 0; i < 26; i++) {
+        if ((vars & (1 << i)) != 0) {
+          sb.append((char) ('a' + i));
+        }
+      }
+      return sb.toString();
     }
   }
   static final Scanner sc = new Scanner(System.in);
@@ -117,11 +130,12 @@ public class Main {
     }
   }
 
-  static void print(List<Line> list) {
-    for (Line s : list) {
-      System.out.println(s.line);
+  static void print(Line[] list, boolean[] mark) {
+    for (int i = 0; i < list.length; i++) {
+      if (!mark[i]) {
+        System.out.println(list[i].line);
+      }
     }
-//    System.out.println("----------------------");
   }
 
   public static void main(String[] args) {
@@ -133,85 +147,40 @@ public class Main {
     }
 
     removeOtherStatement(alist);
-        if (alist.size() > 80000)
-      throw new RuntimeException();
 
-//    for (String s : alist) {
-//      System.out.println(s);
-//    }
-//    System.out.println("-----------------");
-
-    List<Line> list = new LinkedList<>();
+    Line[] list = new Line[alist.size()];
+    boolean[] mark = new boolean[alist.size()];
+    Arrays.fill(mark, false);
     for (int i = 0; i < alist.size(); i++) {
-      list.add(new Line(alist.get(i)));
+      list[i] = new Line(alist.get(i));
     }
 
+    int mCount = 0;
     outer:
-    //while (list.size() != totalLine) {
-    for (int asdf = 0; asdf < 1; asdf++) {
-      
-    
-      Set<Character> willUse = new HashSet<>(list.get(list.size() - 1).vars);
-//      print(list);
-//      System.out.println("---------");
-      int size = list.size();
-      for (int i = list.size() - 2; i >= 0; i--) {
-        char v = list.get(i).v;
-//        System.out.println("v = " + v);
-//        System.out.println("willUse = " + willUse);
-//        System.out.println("map = " + map);
-        if (!willUse.contains(v)) {
-          boolean canFind = false;
-//          find statement below that use v and remove the statement
-          for (int j = i + 1; j < list.size(); j++) {
-            if (v == list.get(j).v) {
-              list.remove(j);
-              canFind = true;
-              break;
+    while (totalLine != list.length - mCount) {
+      int willUse = list[list.length - 1].vars;
+      for (int i = list.length - 2; i >= 0; i--) {
+        if (!mark[i]) {
+          Line line = list[i];
+          char v = line.v;
+          if ((willUse & (1 << (v - 'a'))) != 0) {  // willUse contains V
+            willUse ^= (1 << (v - 'a')); // willUse.remove((Character) v);
+          } else {
+            for (int j = i + 1; j < list.length; j++) {
+              if (!mark[j] && v == list[j].v) {
+                mark[j] = true;
+                mCount++;
+                continue outer;
+              }
             }
+            mCount++;
+            mark[i] = true;
           }
-          if (canFind == false) {
-            list.remove(i);
-          }
-          continue outer;
-        } else {
-          willUse.remove((Character) v);
-          willUse.addAll(list.get(i).vars);
+          willUse |= line.vars;
         }
-      }
-      if (list.size() == size) {
-        throw new RuntimeException();
       }
     }
     System.out.println(first);
-    print(list);
+    print(list, mark);
   }
 }
-//          boolean canFind = false;
-// find statement below that use v and remove the statement
-//          for (int j = i + 1; j < list.size(); j++) {
-//            if (v == list.get(j).v) {
-//              noChange = false;
-//              list.remove(j);
-//              canFind = true;
-//              break;
-//            }
-//          }
-//          if (canFind == false) {
-//            noChange = false;
-//            list.remove(i);
-//          }
-
-//        if (!willUse.contains(v)) {
-//          if (map.get(v) != null) {
-//            list.remove((int) map.get(v));
-//            map.put(v, i);
-//          } else {
-//            list.remove(i);
-//          }
-////          continue outer;
-//        } else {
-//          willUse.remove((Character) v);
-//          willUse.addAll(list.get(i).vars);
-//          map.put(v, i);
-//        }
