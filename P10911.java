@@ -1,3 +1,5 @@
+// idea from https://codediscuss.wordpress.com/2015/01/19/uva-10911-forming-quiz-teams-minimum-cost-perfect-matching/
+// and from the book Competitive Programming https://cpbook.net/
 import java.io.FileInputStream;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -33,9 +35,7 @@ public class Main {
             for (int j = i+1; j < N; j++) {
                 if ((sel & (1<<j)) != 0) continue;
                 sel |= 1<<j;
-                double dist = dist(x[i], y[i], x[j], y[j]) + rec(sel);
-                if (dist < min)
-                    min = dist;
+                min = Math.min(min, dist(x[i], y[i], x[j], y[j]) + rec(sel));
                 sel ^= 1<<j;
             }
             sel ^= 1<<i;
