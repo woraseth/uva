@@ -7,7 +7,7 @@ public class Main {
 
     class Call {
         String prefix;
-        double cost;
+        int cost;
         String location;
 
         Call(String s) {
@@ -16,7 +16,7 @@ public class Main {
             prefix = s.substring(0, space);
             String[] a = s.substring(space + 1, s.length()).split("\\$");
             location = a[0].trim();
-            cost = Integer.parseInt(a[1]) / 100.0;
+            cost = Integer.parseInt(a[1]);
         }
 
         boolean match(String number) {
@@ -32,7 +32,7 @@ public class Main {
                 s += " ";
             }
             String t = location + s + number.substring(prefix.length(), number.length());
-            return String.format("%-16s%s%5d%6.2f%7.2f%n", number, t, minute, cost, cost * minute);
+            return String.format("%-16s%s%5d%3d.%02d%4d.%02d%n", number, t, minute, cost/100, cost%100, cost * minute/100, (cost*minute)%100);
         }
     }
 
