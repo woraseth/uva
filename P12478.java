@@ -69,7 +69,7 @@ public class Main {
             count += find(name, grid2);
 //            System.out.printf("%s %d%n",name, count);
             if (count == 2) {
-                System.out.println(name);
+                System.out.println(name.toUpperCase());
                 break;
             }
         }
