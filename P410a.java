@@ -1,4 +1,5 @@
-// time limit
+// produce the same output as in the example 
+// but when run this code get time limit
 
 import java.io.*;
 import java.util.*;
