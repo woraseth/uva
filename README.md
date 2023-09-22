@@ -1,5 +1,17 @@
 # uva
 
+
+```
+import java.util.*;
+
+public class Main {
+  static Scanner sc = new Scanner(System.in);
+  public static void main(String[] args) throws Exception {
+    // sc = new Scanner(new FileInputStream("c:\\temp\\in.txt"));
+  }
+}
+```
+
 ```
 import java.util.*;
 import java.io.*;
