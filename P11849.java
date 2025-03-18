@@ -11,15 +11,30 @@ public class Main {
             int jill = sc.nextInt();
             if (jack == 0 && jill == 0) 
                 break;
-            Set<Integer> jackSet = new HashSet();
-            for (int i = 0; i < jack; i++) {
-                jackSet.add(sc.nextInt());
+            if (jack == 0 || jill == 0) {
+                System.out.println(0);
+                break;
             }
+
+            int[] a = new int[jack];
+            for (int i = 0; i < jack; i++) {
+                a[i] = sc.nextInt();
+            }
+
+            int pJack = 0;
             int count = 0;
             for (int i = 0; i < jill; i++) {
-                if (jackSet.contains(sc.nextInt()))
+                int x = sc.nextInt();
+                if (pJack == a.length) continue;
+                if (x == a[pJack]) {
                     count++;
+                    pJack++;
+                } else {
+                    while (pJack < a.length && x > a[pJack]) 
+                        pJack++;
+                }
             }
+
             System.out.println(count);
         }
     }
