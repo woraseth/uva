@@ -12,16 +12,12 @@ public class Main {
             if (jack == 0 && jill == 0) 
                 break;
             Set<Integer> jackSet = new HashSet();
-            Set<Integer> jillSet = new HashSet();
             for (int i = 0; i < jack; i++) {
                 jackSet.add(sc.nextInt());
             }
-            for (int i = 0; i < jill; i++) {
-                jillSet.add(sc.nextInt());
-            }
             int count = 0;
-            for (int i : jackSet) {
-                if (jillSet.contains(i))
+            for (int i = 0; i < jill; i++) {
+                if (jackSet.contains(sc.nextInt()))
                     count++;
             }
             System.out.println(count);
